@@ -26,12 +26,9 @@ main {
   color: rgb(156, 156, 156);
 }
 .time-number {
-  font-family: "Arial", Helvetica, sans-serif;
+  font-family: "Roboto Mono", sans-serif;
   padding: 0 16px;
   text-align: center;
-}
-.time-separator {
-  margin-bottom: 20px;
 }
 
 /* button area */
@@ -155,13 +152,16 @@ details[open] summary::before {
   border-color: var(--red-100);
 }
 
+/* styles for half-window */
+@media screen and (width < 1000px){
+  .timer-box{
+    font-size: 6rem;
+  }
+}
 /* styles for mobile */
 @media screen and (width < 600px) {
   .timer-box {
     font-size: 3rem;
-  }
-  .time-separator{
-    margin-bottom: 8px;
   }
   #reset-confirm-popup {
     top: 8px;

@@ -9,6 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@100;200;300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
@@ -20,8 +24,8 @@
       <main>
         <div class="timer-area">
           <div class="timer-box" :class="timerState" @click="timerStartStop">
-            <div class="time-number">{{ display_time.hour }}</div>
-            <div class="time-separator">:</div>
+            <div v-if="time.hour" class="time-number">{{ display_time.hour }}</div>
+            <div v-if="time.hour" class="time-separator">:</div>
             <div class="time-number">{{ display_time.minute }}</div>
             <div class="time-separator">:</div>
             <div class="time-number">{{ display_time.second }}</div>
