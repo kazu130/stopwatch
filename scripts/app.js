@@ -7,13 +7,13 @@ createApp({
         hour: "00",
         minute: "00",
         second: "00",
-        m_second: "00",
+        millisecond: "00",
       },
       time: {
         hour: 0,
         minute: 0,
         second: 0,
-        m_second: 0,
+        millisecond: 0,
       },
       start_time: 0,
       timer_is_running: false,
@@ -30,6 +30,7 @@ createApp({
         if (!this.timer_is_pausing) {
           this.timer_pausing_diff = 0;
         }
+        // this.timer_pausing_diff = 3599000;
         this.start_time = new Date();
         timerInterval = setInterval(() => {
           let current_time = new Date();
@@ -37,7 +38,7 @@ createApp({
             this.timer_pausing_diff +
             (current_time.getTime() - this.start_time.getTime());
 
-          this.time.m_second = Math.floor(this.timer_diff / 10) % 100;
+          this.time.millisecond = Math.floor(this.timer_diff / 10) % 100;
           this.time.second = Math.floor(this.timer_diff / 1000) % 60;
           this.time.minute = Math.floor(this.timer_diff / 1000 / 60) % 60;
           this.time.hour = Math.floor(this.timer_diff / 1000 / 60 / 60);
@@ -47,7 +48,6 @@ createApp({
         this.timer_is_pausing = true;
         this.timer_pausing_diff = this.timer_diff;
       }
-      console.log(this.timer_diff, this.timer_pausing_diff);
     },
     timerReset: function () {
       if (this.timer_is_running || this.timer_is_pausing) {
@@ -59,7 +59,7 @@ createApp({
         hour: 0,
         minute: 0,
         second: 0,
-        m_second: 0,
+        millisecond: 0,
       };
       this.closePopup();
     },
@@ -77,7 +77,7 @@ createApp({
     time: {
       handler: function () {
         this.display_time = {
-          m_second: this.time.m_second.toString().padStart(2, 0),
+          millisecond: this.time.millisecond.toString().padStart(2, 0),
           second: this.time.second.toString().padStart(2, 0),
           minute: this.time.minute.toString().padStart(2, 0),
           hour: this.time.hour.toString().padStart(2, 0),

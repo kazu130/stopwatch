@@ -24,13 +24,17 @@
       <main>
         <div class="timer-area">
           <div class="timer-box" :class="timerState" @click="timerStartStop">
-            <div v-if="time.hour" class="time-number">{{ display_time.hour }}</div>
+            <div v-if="time.hour" class="time-number">
+              {{ display_time.hour }}
+            </div>
             <div v-if="time.hour" class="time-separator">:</div>
             <div class="time-number">{{ display_time.minute }}</div>
             <div class="time-separator">:</div>
             <div class="time-number">{{ display_time.second }}</div>
-            <div class="time-dot">.</div>
-            <div class="time-number">{{ display_time.m_second }}</div>
+            <div v-if="!time.hour" class="time-dot">.</div>
+            <div v-if="!time.hour" class="time-number">
+              {{ display_time.millisecond }}
+            </div>
           </div>
         </div>
         <div class="button-area">
