@@ -1,0 +1,171 @@
+body {
+  margin: 0;
+  font-family: "Google Sans";
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* timer area */
+.timer-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.timer-box.running {
+  color: #111;
+}
+.timer-box.pausing {
+  color: rgb(156, 156, 156);
+}
+.time-number {
+  font-family: "Arial", Helvetica, sans-serif;
+  padding: 0 16px;
+  text-align: center;
+}
+.time-separator {
+  margin-bottom: 20px;
+}
+
+/* button area */
+.button-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.button-wrapper + .button-wrapper {
+  margin-left: 8px;
+}
+[class*="operation-button"] {
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.operation-button-reset {
+  background: var(--red-100);
+}
+.operation-button-reset:hover {
+  background: rgb(249, 20, 20);
+}
+.operation-button-toggle {
+  background: var(--blue-100);
+  box-shadow: inset 0 0 0 1.5px var(--blue-100);
+  transition: 0.2s;
+}
+.operation-button-toggle.running {
+  background: rgb(255, 255, 255);
+}
+.operation-button-toggle.running path {
+  fill: var(--blue-100);
+}
+[class*="operation-button"] path {
+  fill: #fff;
+}
+@keyframes popup-show {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+details[open] > div {
+  animation: popup-show 0.4s;
+}
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] summary::before {
+  content: "";
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.relative-container {
+  position: relative;
+}
+
+/* reset confirm popup */
+#reset-confirm-popup {
+  display: grid;
+  grid-template-columns: auto 40px;
+  gap: 16px;
+  background: rgb(255, 255, 255);
+  width: 220px;
+  border-radius: 8px;
+  padding: 16px;
+  position: absolute;
+  top: -40px;
+  left: 0;
+  transform: translateX(-104%);
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(83, 83, 83, 0.478),
+    0 2px 2px rgba(38, 38, 38, 0.145);
+}
+.popup-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.popup-close-button {
+  cursor: pointer;
+  justify-self: right;
+  padding: 8px;
+  border-radius: 16px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -4px -4px 0 0;
+}
+.popup-close-button:hover {
+  background: rgb(224, 224, 224);
+}
+.reset-confirm-button-reset {
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 1;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px rgb(151, 151, 151) solid;
+  background: rgb(255, 255, 255);
+  color: var(--red-100);
+  font-size: 14px;
+}
+.reset-confirm-button-reset:hover {
+  color: #fff;
+  background: var(--red-100);
+  border-color: var(--red-100);
+}
+
+/* styles for mobile */
+@media screen and (width < 600px) {
+  .timer-box {
+    font-size: 3rem;
+  }
+  .time-separator{
+    margin-bottom: 8px;
+  }
+  #reset-confirm-popup {
+    top: 8px;
+    left: 0;
+    transform: translateX(-50%);
+  }
+}
