@@ -7,11 +7,13 @@ createApp({
         hour: "00",
         minute: "00",
         second: "00",
+        m_second: "00",
       },
       time: {
         hour: 0,
         minute: 0,
         second: 0,
+        m_second: 0,
       },
       start_time: 0,
       timer_is_running: false,
@@ -33,12 +35,13 @@ createApp({
           let current_time = new Date();
           this.timer_diff =
             this.timer_pausing_diff +
-            (current_time.getTime() - this.start_time.getTime()) / 1000;
+            (current_time.getTime() - this.start_time.getTime());
 
-          this.time.second = Math.floor(this.timer_diff) % 60;
-          this.time.minute = Math.floor(this.timer_diff / 60) % 60;
-          this.time.hour = Math.floor(this.timer_diff / 60 / 60);
-        }, 100);
+          this.time.m_second = Math.floor(this.timer_diff / 10) % 100;
+          this.time.second = Math.floor(this.timer_diff / 1000) % 60;
+          this.time.minute = Math.floor(this.timer_diff / 1000 / 60) % 60;
+          this.time.hour = Math.floor(this.timer_diff / 1000 / 60 / 60);
+        }, 10);
       } else {
         clearInterval(timerInterval);
         this.timer_is_pausing = true;
@@ -56,6 +59,7 @@ createApp({
         hour: 0,
         minute: 0,
         second: 0,
+        m_second: 0,
       };
       this.closePopup();
     },
@@ -73,6 +77,7 @@ createApp({
     time: {
       handler: function () {
         this.display_time = {
+          m_second: this.time.m_second.toString().padStart(2, 0),
           second: this.time.second.toString().padStart(2, 0),
           minute: this.time.minute.toString().padStart(2, 0),
           hour: this.time.hour.toString().padStart(2, 0),
