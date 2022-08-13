@@ -258,13 +258,31 @@ details[open] summary::before {
   }
 }
 /* styles for mobile */
-@media screen and (width < 600px) {
+@media screen and (max-width: 600px) {
+  .setting-container {
+    width: 280px;
+  }
+  main {
+    margin-top: 240px;
+    justify-content: start;
+    height: auto;
+  }
   .timer-box {
     font-size: 3rem;
   }
+  .button-area {
+    padding-top: 40px;
+  }
+  .button-wrapper + .button-wrapper {
+    margin-left: 24px;
+  }
+  [class*="operation-button"] {
+    width: 100px;
+    height: 44px;
+    border-radius: 40px;
+  }
   #reset-confirm-popup {
     top: 8px;
-    left: 0;
-    transform: translateX(-50%);
+    left: 200px;
   }
 }

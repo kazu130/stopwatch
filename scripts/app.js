@@ -135,3 +135,7 @@ createApp({
     },
   },
 }).mount("#app");
+
+$(".operation-button-toggle").on("click", function (e) {
+  e.preventDefault();
+});
