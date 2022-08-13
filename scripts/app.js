@@ -3,6 +3,13 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
+      setting: {
+        appearance: "system",
+        watch: {
+          hour: "auto",
+          millisecond: "auto",
+        },
+      },
       display_time: {
         hour: "00",
         minute: "00",
@@ -71,6 +78,26 @@ createApp({
   computed: {
     timerState: function () {
       return this.timer_is_running ? "running" : "pausing";
+    },
+    hourAppearance: function () {
+      if (
+        this.setting.watch.hour === "show" ||
+        (this.setting.watch.hour === "auto" && this.time.hour)
+      ) {
+        return "";
+      } else {
+        return "hidden";
+      }
+    },
+    millisecondAppearance: function () {
+      if (
+        this.setting.watch.millisecond === "show" ||
+        (this.setting.watch.millisecond === "auto" && !this.time.hour)
+      ) {
+        return "";
+      } else {
+        return "hidden";
+      }
     },
   },
   watch: {
