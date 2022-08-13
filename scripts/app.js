@@ -73,8 +73,19 @@ createApp({
     closePopup: function () {
       $("details[open]").removeAttr("open");
     },
+    getSysTheme: function () {
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        return "dark";
+      }
+      return "light";
+    },
   },
-  mounted: function () {},
+  mounted: function () {
+    $("html").attr("theme", this.getSysTheme());
+  },
   computed: {
     timerState: function () {
       return this.timer_is_running ? "running" : "pausing";
@@ -109,6 +120,16 @@ createApp({
           minute: this.time.minute.toString().padStart(2, 0),
           hour: this.time.hour.toString().padStart(2, 0),
         };
+      },
+      deep: true,
+    },
+    setting: {
+      handler: function () {
+        let theme = this.setting.appearance;
+        if (theme === "system") {
+          theme = this.getSysTheme();
+        }
+        $("html").attr("theme", theme);
       },
       deep: true,
     },
