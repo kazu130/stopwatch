@@ -112,6 +112,9 @@ main {
 }
 
 /* timer area */
+.timer-area{
+  padding-bottom: 8px;
+}
 .timer-box {
   display: flex;
   align-items: center;
@@ -142,7 +145,7 @@ main {
   justify-content: center;
 }
 .button-wrapper + .button-wrapper {
-  margin-left: 8px;
+  margin-left: 16px;
 }
 [class*="operation-button"] {
   border-radius: 20px;
@@ -156,8 +159,10 @@ main {
 }
 .operation-button-reset {
   background: var(--material-red);
+  width:72px;
 }
 .operation-button-toggle {
+  width: 200px;
   background: var(--material-blue);
   box-shadow: inset 0 0 0 1.5px var(--material-blue);
 }
